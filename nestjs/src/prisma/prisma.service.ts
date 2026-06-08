@@ -32,6 +32,7 @@ export class PrismaService implements OnModuleInit, OnModuleDestroy {
   // Expose Prisma model delegates at the service level for convenience
   get template()   { return this.client.template; }
   get invitation() { return this.client.invitation; }
+  get rsvp()       { return this.client.rsvp; }
 
   constructor() {
     this.pool = buildPool();

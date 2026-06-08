@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchPublicInvitation } from '../api/invitations';
+import type { Rsvp } from '../api/invitations';
 import { PreviewRenderer } from '../components/previews/PreviewRenderer';
+import { RsvpForm } from '../components/RsvpForm';
 import styles from './PublicInvitationPage.module.css';
 
 export function PublicInvitationPage() {
   const { slug } = useParams<{ slug: string }>();
+  const [submittedRsvp, setSubmittedRsvp] = useState<Rsvp | null>(null);
 
   const { data: invitation, isLoading, isError, error } = useQuery({
     queryKey: ['public-invitation', slug],
@@ -87,6 +91,24 @@ export function PublicInvitationPage() {
               <dd>{invitation.venue}</dd>
             </div>
           </dl>
+        </section>
+
+        <section className={styles.rsvpSection} aria-label="RSVP">
+          {submittedRsvp ? (
+            <div className={styles.rsvpSuccess}>
+              <span className={styles.rsvpSuccessIcon}>🎉</span>
+              <h2 className={styles.rsvpSuccessTitle}>
+                {submittedRsvp.attendanceStatus === 'attending'
+                  ? "You're coming!"
+                  : 'Response recorded'}
+              </h2>
+              <p className={styles.rsvpSuccessMsg}>
+                Thank you, <strong>{submittedRsvp.guestName}</strong>. Your RSVP has been sent.
+              </p>
+            </div>
+          ) : (
+            <RsvpForm invitationId={invitation.id} onSuccess={setSubmittedRsvp} />
+          )}
         </section>
       </main>
 

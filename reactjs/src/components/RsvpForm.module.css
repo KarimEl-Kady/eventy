@@ -1,0 +1,105 @@
+.form {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: 'Inter', sans-serif;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #555;
+}
+
+.optional {
+  font-weight: 400;
+  text-transform: none;
+  color: #aaa;
+  letter-spacing: 0;
+  font-size: 0.78rem;
+}
+
+.field input {
+  padding: 10px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.18s;
+}
+
+.field input:focus { border-color: #c9a84c; }
+
+.toggleGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.toggle {
+  flex: 1;
+  padding: 10px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  color: #555;
+  font-size: 0.87rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.toggle:hover { border-color: #c9a84c; color: #c9a84c; }
+
+.toggleActive {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  color: #fff;
+}
+
+.error {
+  font-size: 0.85rem;
+  color: #c0392b;
+  margin: 0;
+}
+
+.submitBtn {
+  padding: 12px;
+  background: #c9a84c;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.97rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.submitBtn:hover:not(:disabled) { background: #b8962e; transform: translateY(-1px); }
+.submitBtn:disabled { opacity: 0.6; cursor: not-allowed; }

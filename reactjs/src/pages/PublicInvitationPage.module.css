@@ -133,3 +133,33 @@
   color: #bbb;
   border-top: 1px solid #eee;
 }
+
+.rsvpSection { width: 100%; }
+
+.rsvpSuccess {
+  background: #fff;
+  border-radius: 14px;
+  border: 1.5px solid #d4edda;
+  padding: 36px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+
+.rsvpSuccessIcon { font-size: 2.4rem; }
+
+.rsvpSuccessTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #1a6b3c;
+  margin: 0;
+}
+
+.rsvpSuccessMsg {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}

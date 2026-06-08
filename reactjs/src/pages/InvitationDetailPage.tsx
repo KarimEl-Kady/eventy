@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchInvitation, publishInvitation } from '../api/invitations';
+import { fetchInvitation, publishInvitation, fetchRsvps } from '../api/invitations';
+import type { Rsvp } from '../api/invitations';
 import { PreviewRenderer } from '../components/previews/PreviewRenderer';
 import styles from './InvitationDetailPage.module.css';
 
@@ -10,6 +11,12 @@ export function InvitationDetailPage() {
   const { data: invitation, isLoading, isError } = useQuery({
     queryKey: ['invitation', id],
     queryFn: () => fetchInvitation(id!),
+    enabled: !!id,
+  });
+
+  const { data: rsvps = [] } = useQuery<Rsvp[]>({
+    queryKey: ['rsvps', id],
+    queryFn: () => fetchRsvps(id!),
     enabled: !!id,
   });
 
@@ -94,6 +101,23 @@ export function InvitationDetailPage() {
           </>
         )}
       </div>
+
+      {rsvps.length > 0 && (
+        <div className={styles.rsvpList}>
+          <h2 className={styles.rsvpListTitle}>Responses ({rsvps.length})</h2>
+          <ul className={styles.rsvpItems}>
+            {rsvps.map((r) => (
+              <li key={r.id} className={styles.rsvpItem}>
+                <span className={styles.rsvpName}>{r.guestName}</span>
+                <span className={`${styles.rsvpStatus} ${r.attendanceStatus === 'attending' ? styles.attending : styles.notAttending}`}>
+                  {r.attendanceStatus === 'attending' ? '✓ Attending' : '✗ Not Attending'}
+                </span>
+                <span className={styles.rsvpCount}>{r.guestCount} guest{r.guestCount !== 1 ? 's' : ''}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

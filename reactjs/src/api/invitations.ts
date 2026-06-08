@@ -57,3 +57,37 @@ export async function fetchPublicInvitation(slug: string): Promise<Invitation> {
   if (!res.ok) throw new Error('Failed to fetch invitation');
   return res.json();
 }
+
+export interface Rsvp {
+  id: string;
+  invitationId: string;
+  guestName: string;
+  attendanceStatus: string;
+  guestCount: number;
+  notes: string | null;
+  createdAt: string;
+}
+
+export interface CreateRsvpPayload {
+  invitationId: string;
+  guestName: string;
+  attendanceStatus: string;
+  guestCount: number;
+  notes?: string;
+}
+
+export async function submitRsvp(payload: CreateRsvpPayload): Promise<Rsvp> {
+  const res = await fetch(`${BASE_URL}/api/rsvps`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error('Failed to submit RSVP');
+  return res.json();
+}
+
+export async function fetchRsvps(invitationId: string): Promise<Rsvp[]> {
+  const res = await fetch(`${BASE_URL}/api/invitations/${invitationId}/rsvps`);
+  if (!res.ok) throw new Error('Failed to fetch RSVPs');
+  return res.json();
+}
