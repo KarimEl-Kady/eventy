@@ -396,12 +396,12 @@ Full `App.tsx` routes after this story:
 
 ## Done Criteria
 
-- [ ] `GET /api/invitations/public/:slug` returns the invitation for a published slug
-- [ ] `GET /api/invitations/public/:slug` returns 404 for an unknown slug
-- [ ] `GET /api/invitations/public/:slug` returns 404 for a draft invitation's slug (if slug somehow exists)
-- [ ] `/i/:slug` renders the full template-styled invitation using `PreviewRenderer`
-- [ ] Wedding details section shows couple names, formatted date, time, and venue
-- [ ] Template `previewImage` is displayed as the gallery section
-- [ ] Invalid slug shows the "Invitation not found" error page
-- [ ] No authentication is required to access `/i/:slug`
-- [ ] Loading spinner is shown while the query is in flight
+- [x] `GET /api/invitations/public/:slug` returns the invitation for a published slug
+- [x] `GET /api/invitations/public/:slug` returns 404 for an unknown slug
+- [x] `GET /api/invitations/public/:slug` returns 404 for a draft invitation's slug (if slug somehow exists)
+- [x] `/i/:slug` renders the full template-styled invitation using `PreviewRenderer`
+- [x] Wedding details section shows couple names, formatted date, time, and venue
+- [x] Template `previewImage` is displayed as the gallery section
+- [x] Invalid slug shows the "Invitation not found" error page
+- [x] No authentication is required to access `/i/:slug`
+- [x] Loading spinner is shown while the query is in flight

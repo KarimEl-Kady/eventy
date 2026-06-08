@@ -946,15 +946,15 @@ Add Google Fonts import to `reactjs/index.html` `<head>`:
 
 ## Done Criteria
 
-- [ ] `GET /api/templates` returns all templates as a JSON array
-- [ ] `GET /api/templates/:slug` returns a single template or 404
-- [ ] Database contains at least 6 seeded templates
-- [ ] `/templates` page renders a responsive grid
-- [ ] Each card shows thumbnail, name, and category
-- [ ] Premium badge is visible on premium templates
-- [ ] Category filter chips filter the grid
-- [ ] Preview modal opens on "Preview" click and closes on Escape or backdrop click
-- [ ] Selecting a template highlights it with a gold border in the grid
-- [ ] Selected template is stored in Zustand and persisted across page refreshes
+- [x] `GET /api/templates` returns all templates as a JSON array
+- [x] `GET /api/templates/:slug` returns a single template or 404
+- [x] Database contains at least 6 seeded templates
+- [x] `/templates` page renders a responsive grid
+- [x] Each card shows thumbnail, name, and category
+- [x] Premium badge is visible on premium templates
+- [x] Category filter chips filter the grid
+- [x] Preview modal opens on "Preview" click and closes on Escape or backdrop click
+- [x] Selecting a template highlights it with a gold border in the grid
+- [x] Selected template is stored in Zustand and persisted across page refreshes
 
 **STOP HERE. Report to the user and wait for confirmation before proceeding to Story 02.**

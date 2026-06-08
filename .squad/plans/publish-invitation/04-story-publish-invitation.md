@@ -363,13 +363,13 @@ Replace the `<div className={styles.actions}>` block with:
 
 ## Done Criteria
 
-- [ ] `Invitation` Prisma model has `slug String? @unique`
-- [ ] `PATCH /api/invitations/:id/publish` transitions status to `"published"` and sets a unique slug
-- [ ] Calling publish on an already-published invitation returns the same record without error
-- [ ] "Publish Invitation →" button on the preview page is **enabled** and triggers the API call
-- [ ] After publish, the button area is replaced by a share box showing the public URL
-- [ ] "Copy" button copies the URL to the clipboard
-- [ ] "Open public page →" opens the public URL in a new tab
-- [ ] Refreshing `/invitations/:id` after publish preserves the share box state
+- [x] `Invitation` Prisma model has `slug String? @unique`
+- [x] `PATCH /api/invitations/:id/publish` transitions status to `"published"` and sets a unique slug
+- [x] Calling publish on an already-published invitation returns the same record without error
+- [x] "Publish Invitation →" button on the preview page is **enabled** and triggers the API call
+- [x] After publish, the button area is replaced by a share box showing the public URL
+- [x] "Copy" button copies the URL to the clipboard
+- [x] "Open public page →" opens the public URL in a new tab
+- [x] Refreshing `/invitations/:id` after publish preserves the share box state
 
 **STOP HERE. Report to the user and wait for confirmation before proceeding to Story 05.**

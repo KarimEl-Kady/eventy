@@ -351,13 +351,13 @@ export function InvitationDetailPage() {
 
 ## Done Criteria
 
-- [ ] `InvitationDetailPage` renders the full template-styled preview (not the generic stub card)
-- [ ] All 6 template slugs have a corresponding preview component with distinct visual styling
-- [ ] Preview displays: invitation title, bride name, groom name, formatted date, time, and venue
-- [ ] The formatted date reads as long-form (e.g. "Saturday, September 15 2025")
-- [ ] "Publish Invitation →" button is present and disabled
-- [ ] "← Back to templates" button navigates to `/templates`
-- [ ] Unknown template slug falls back to a graceful "Preview not available" message
-- [ ] No backend changes were made
+- [x] `InvitationDetailPage` renders the full template-styled preview (not the generic stub card)
+- [x] All 6 template slugs have a corresponding preview component with distinct visual styling
+- [x] Preview displays: invitation title, bride name, groom name, formatted date, time, and venue
+- [x] The formatted date reads as long-form (e.g. "Saturday, September 15 2025")
+- [x] "Publish Invitation →" button is present and disabled
+- [x] "← Back to templates" button navigates to `/templates`
+- [x] Unknown template slug falls back to a graceful "Preview not available" message
+- [x] No backend changes were made
 
 **STOP HERE. Report to the user and wait for confirmation before proceeding to Story 04.**

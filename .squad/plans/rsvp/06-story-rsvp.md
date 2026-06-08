@@ -672,13 +672,13 @@ Append to `InvitationDetailPage.module.css`:
 
 ## Done Criteria
 
-- [ ] `Rsvp` Prisma model created with all fields; migration applied
-- [ ] `POST /api/rsvps` saves an RSVP and returns the created record
-- [ ] `POST /api/rsvps` returns 404 for a draft or non-existent invitation
-- [ ] `GET /api/invitations/:id/rsvps` returns all RSVPs for an invitation ordered newest-first
-- [ ] RSVP form appears on the public invitation page (`/i/:slug`)
-- [ ] Guest name is required; empty submission shows a validation error
-- [ ] Attendance toggle switches between "Attending" and "Not Attending"
-- [ ] On success, the form is replaced by a thank-you confirmation banner
-- [ ] Couple's `/invitations/:id` page shows a "Responses" list when RSVPs exist
-- [ ] Each response row shows guest name, attendance status (colour-coded pill), and guest count
+- [x] `Rsvp` Prisma model created with all fields; migration applied
+- [x] `POST /api/rsvps` saves an RSVP and returns the created record
+- [x] `POST /api/rsvps` returns 404 for a draft or non-existent invitation
+- [x] `GET /api/invitations/:id/rsvps` returns all RSVPs for an invitation ordered newest-first
+- [x] RSVP form appears on the public invitation page (`/i/:slug`)
+- [x] Guest name is required; empty submission shows a validation error
+- [x] Attendance toggle switches between "Attending" and "Not Attending"
+- [x] On success, the form is replaced by a thank-you confirmation banner
+- [x] Couple's `/invitations/:id` page shows a "Responses" list when RSVPs exist
+- [x] Each response row shows guest name, attendance status (colour-coded pill), and guest count

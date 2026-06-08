@@ -729,12 +729,12 @@ Add to `TemplateExplorerPage.module.css`:
 
 ## Done Criteria
 
-- [ ] `POST /api/invitations` creates a draft invitation linked to a template and returns the full object
-- [ ] `GET /api/invitations/:id` returns the invitation or 404
-- [ ] `InvitationCreationPage` shows the selected template badge and all 6 fields
-- [ ] Client-side validation blocks submit when any field is empty
-- [ ] Submitting navigates to `/invitations/:id`
-- [ ] Visiting `/invitations/new` with no template selected redirects to `/templates`
-- [ ] Selecting a template on `/templates` shows the sticky "Continue →" CTA bar
+- [x] `POST /api/invitations` creates a draft invitation linked to a template and returns the full object
+- [x] `GET /api/invitations/:id` returns the invitation or 404
+- [x] `InvitationCreationPage` shows the selected template badge and all 6 fields
+- [x] Client-side validation blocks submit when any field is empty
+- [x] Submitting navigates to `/invitations/:id`
+- [x] Visiting `/invitations/new` with no template selected redirects to `/templates`
+- [x] Selecting a template on `/templates` shows the sticky "Continue →" CTA bar
 
 **STOP HERE. Report to the user and wait for confirmation before proceeding to Story 03.**
