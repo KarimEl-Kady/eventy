@@ -1,0 +1,22 @@
+.card {
+  background: #ffffff;
+  border: 2px solid #2c2c2c;
+  padding: 8px;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.outerBorder {
+  border: 1px solid #2c2c2c;
+  padding: 48px 44px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+.label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.22em; color: #555; margin: 0 0 20px; font-family: 'Helvetica Neue', sans-serif; }
+.couple { font-size: 2.1rem; font-weight: 400; color: #2c2c2c; margin: 0 0 8px; line-height: 1.2; }
+.couple span { font-style: italic; font-size: 1.7rem; }
+.title { font-size: 0.85rem; color: #555; letter-spacing: 0.12em; margin: 0 0 24px; text-transform: uppercase; font-family: 'Helvetica Neue', sans-serif; }
+.rule { width: 100px; height: 1px; background: #2c2c2c; margin: 0 auto 24px; }
+.date { font-size: 0.95rem; color: #2c2c2c; margin: 0 0 6px; font-style: italic; }
+.time { font-size: 0.85rem; color: #555; margin: 0 0 10px; }
+.venue { font-size: 0.9rem; color: #555; margin: 0; font-style: italic; }

@@ -1,0 +1,19 @@
+.card {
+  background: #0f0f1a;
+  border: 1px solid #2a2a4a;
+  border-radius: 4px;
+  padding: 56px 48px;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6);
+}
+.accentLine { width: 80px; height: 1px; background: #c9a84c; margin: 0 auto 28px; }
+.label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.2em; color: #8888aa; margin: 0 0 18px; }
+.couple { font-size: 2.4rem; font-weight: 300; color: #e8e8f5; margin: 0 0 8px; line-height: 1.2; }
+.couple span { color: #c9a84c; font-style: italic; font-size: 2rem; }
+.title { font-size: 0.85rem; color: #9999bb; letter-spacing: 0.12em; margin: 0 0 28px; font-style: italic; }
+.date { font-size: 1rem; color: #c9a84c; margin: 0 0 6px; font-weight: 600; letter-spacing: 0.05em; }
+.time { font-size: 0.85rem; color: #aaaacc; margin: 0 0 10px; }
+.venue { font-size: 0.9rem; color: #aaaacc; margin: 0; font-style: italic; }

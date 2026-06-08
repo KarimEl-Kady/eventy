@@ -1,0 +1,21 @@
+.card {
+  background: linear-gradient(160deg, #fdf6f0 0%, #f5e6e8 100%);
+  border: 2px solid #d4a7b0;
+  border-radius: 4px;
+  padding: 56px 48px;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 8px 40px rgba(212, 167, 176, 0.25);
+}
+.floralTop, .floralBottom { color: #d4a7b0; font-size: 1.3rem; letter-spacing: 0.5em; margin-bottom: 20px; }
+.floralBottom { margin-top: 20px; margin-bottom: 0; }
+.label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: #a07080; margin: 0 0 16px; }
+.couple { font-size: 2.2rem; font-weight: 400; color: #5a2d40; margin: 0 0 8px; line-height: 1.2; }
+.couple span { font-style: italic; font-size: 1.8rem; }
+.title { font-size: 0.9rem; color: #a07080; letter-spacing: 0.1em; margin: 0 0 24px; font-style: italic; }
+.divider { width: 60px; height: 1px; background: #d4a7b0; margin: 0 auto 24px; }
+.date { font-size: 1rem; color: #5a2d40; margin: 0 0 6px; font-weight: 600; }
+.time { font-size: 0.9rem; color: #7a4d5a; margin: 0 0 10px; }
+.venue { font-size: 0.95rem; color: #7a4d5a; margin: 0; font-style: italic; }

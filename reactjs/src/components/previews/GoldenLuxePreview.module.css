@@ -1,0 +1,19 @@
+.card {
+  background: #0a1628;
+  border: 1px solid #c9a84c;
+  border-radius: 2px;
+  padding: 56px 48px;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.7), inset 0 0 0 6px rgba(201, 168, 76, 0.08);
+}
+.diamond { font-size: 1rem; color: #c9a84c; letter-spacing: 0.4em; margin-bottom: 24px; }
+.label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.2em; color: #8a7a5a; margin: 0 0 18px; }
+.couple { font-size: 2.3rem; font-weight: 400; color: #c9a84c; margin: 0 0 8px; line-height: 1.2; }
+.couple span { font-style: italic; font-size: 1.9rem; color: #e8d090; }
+.title { font-size: 0.85rem; color: #8a7a5a; letter-spacing: 0.1em; margin: 0 0 24px; font-style: italic; }
+.date { font-size: 1rem; color: #e8d090; margin: 0 0 6px; font-weight: 600; letter-spacing: 0.05em; }
+.time { font-size: 0.85rem; color: #a09070; margin: 0 0 10px; }
+.venue { font-size: 0.9rem; color: #a09070; margin: 0; font-style: italic; }
