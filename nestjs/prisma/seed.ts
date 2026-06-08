@@ -3,7 +3,17 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 import 'dotenv/config';
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const connectionString = process.env.DATABASE_URL!;
+let schema = 'public';
+try {
+  const url = new URL(connectionString);
+  schema = url.searchParams.get('schema') ?? 'public';
+} catch { /* ignore */ }
+
+const pool = new Pool({
+  connectionString,
+  options: `-c search_path="${schema}",public`,
+});
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 

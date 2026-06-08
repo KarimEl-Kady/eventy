@@ -1,23 +1,39 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
   provider = "postgresql"
+  schemas  = ["eventy"]
 }
 
 model Template {
-  id           String  @id @default(uuid())
+  id           String       @id @default(uuid())
   name         String
-  slug         String  @unique
+  slug         String       @unique
   thumbnail    String
   category     String
   previewImage String
-  isPremium    Boolean @default(false)
+  isPremium    Boolean      @default(false)
+  invitations  Invitation[]
+
+  @@schema("eventy")
+}
+
+model Invitation {
+  id          String   @id @default(uuid())
+  title       String
+  brideName   String
+  groomName   String
+  weddingDate DateTime
+  weddingTime String
+  venue       String
+  status      String   @default("draft")
+  templateId  String
+  template    Template @relation(fields: [templateId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@schema("eventy")
 }

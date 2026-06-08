@@ -1,0 +1,67 @@
+.page {
+  min-height: 100vh;
+  background: #f9f6f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  font-family: 'Inter', sans-serif;
+}
+
+.status {
+  text-align: center;
+  padding: 80px 24px;
+  color: #888;
+  font-family: 'Inter', sans-serif;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  padding: 48px 40px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: #f0e9d2;
+  color: #8a6c1e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+}
+
+.couple {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #c9a84c;
+  margin: 0 0 12px;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 4px 0;
+}
+
+.note {
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: #aaa;
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+}

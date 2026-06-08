@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTemplates } from '../api/templates';
 import type { Template } from '../api/templates';
@@ -10,6 +11,8 @@ import styles from './TemplateExplorerPage.module.css';
 const ALL = 'All';
 
 export function TemplateExplorerPage() {
+  const navigate = useNavigate();
+
   const { data: templates = [], isLoading, isError } = useQuery({
     queryKey: ['templates'],
     queryFn: fetchTemplates,
@@ -74,6 +77,19 @@ export function TemplateExplorerPage() {
         onSelect={setSelectedTemplate}
         isSelected={selectedTemplate?.id === previewTemplate?.id}
       />
+
+      {selectedTemplate && (
+        <div className={styles.ctaBar}>
+          <span>Template selected: <strong>{selectedTemplate.name}</strong></span>
+          <button
+            id="create-invitation-cta"
+            className={styles.ctaBtn}
+            onClick={() => navigate('/invitations/new')}
+          >
+            Continue →
+          </button>
+        </div>
+      )}
     </div>
   );
 }
