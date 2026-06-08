@@ -20,4 +20,14 @@ export class InvitationsController {
   publish(@Param('id') id: string) {
     return this.invitationsService.publish(id);
   }
+
+  @Get('public/:slug')
+  async findPublic(@Param('slug') slug: string) {
+    const invitation = await this.invitationsService.findBySlug(slug);
+    if (!invitation) {
+      const { NotFoundException } = await import('@nestjs/common');
+      throw new NotFoundException(`Invitation not found or not published`);
+    }
+    return invitation;
+  }
 }

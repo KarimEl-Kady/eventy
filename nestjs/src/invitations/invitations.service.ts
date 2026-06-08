@@ -49,4 +49,14 @@ export class InvitationsService {
       include: { template: true },
     });
   }
+
+  async findBySlug(slug: string) {
+    const invitation = await this.prisma.invitation.findUnique({
+      where: { slug },
+      include: { template: true },
+    });
+    // Return null (not NotFoundException) — controller decides the HTTP status
+    if (!invitation || invitation.status !== 'published') return null;
+    return invitation;
+  }
 }

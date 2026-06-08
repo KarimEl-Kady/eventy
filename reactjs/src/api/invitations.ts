@@ -50,3 +50,10 @@ export async function publishInvitation(id: string): Promise<Invitation> {
   if (!res.ok) throw new Error('Failed to publish invitation');
   return res.json();
 }
+
+export async function fetchPublicInvitation(slug: string): Promise<Invitation> {
+  const res = await fetch(`${BASE_URL}/api/invitations/public/${slug}`);
+  if (res.status === 404) throw new Error('NOT_FOUND');
+  if (!res.ok) throw new Error('Failed to fetch invitation');
+  return res.json();
+}
