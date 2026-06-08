@@ -30,4 +30,23 @@ export class InvitationsService {
     if (!invitation) throw new NotFoundException(`Invitation '${id}' not found`);
     return invitation;
   }
+
+  async publish(id: string) {
+    const invitation = await this.prisma.invitation.findUnique({ where: { id } });
+    if (!invitation) throw new NotFoundException(`Invitation '${id}' not found`);
+    if (invitation.status === 'published') {
+      // Already published — return as-is (idempotent)
+      return this.prisma.invitation.findUnique({ where: { id }, include: { template: true } });
+    }
+
+    // Generate a short unique slug: first 8 chars of a hex random + suffix
+    const { randomBytes } = await import('crypto');
+    const publicSlug = randomBytes(4).toString('hex') + '-' + id.slice(0, 4);
+
+    return this.prisma.invitation.update({
+      where: { id },
+      data: { status: 'published', slug: publicSlug },
+      include: { template: true },
+    });
+  }
 }

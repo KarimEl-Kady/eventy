@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { fetchInvitation } from '../api/invitations';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { fetchInvitation, publishInvitation } from '../api/invitations';
 import { PreviewRenderer } from '../components/previews/PreviewRenderer';
 import styles from './InvitationDetailPage.module.css';
 
@@ -13,8 +13,21 @@ export function InvitationDetailPage() {
     enabled: !!id,
   });
 
+  const queryClient = useQueryClient();
+
+  const publishMutation = useMutation({
+    mutationFn: () => publishInvitation(id!),
+    onSuccess: (updated) => {
+      queryClient.setQueryData(['invitation', id], updated);
+    },
+  });
+
   if (isLoading) return <div className={styles.status}>Loading invitation…</div>;
   if (isError || !invitation) return <div className={styles.status}>Invitation not found.</div>;
+
+  const publicUrl = invitation.slug
+    ? `${window.location.origin}/i/${invitation.slug}`
+    : null;
 
   return (
     <div className={styles.page}>
@@ -35,15 +48,51 @@ export function InvitationDetailPage() {
       </div>
 
       <div className={styles.actions}>
-        <button
-          id="publish-invitation-btn"
-          className={styles.publishBtn}
-          disabled
-          title="Publishing coming in the next step"
-        >
-          Publish Invitation →
-        </button>
-        <p className={styles.publishHint}>Publishing will make your invitation available via a public link.</p>
+        {publicUrl ? (
+          <div className={styles.shareBox}>
+            <p className={styles.shareLabel}>🎉 Your invitation is live!</p>
+            <div className={styles.urlRow}>
+              <input
+                id="public-url-input"
+                className={styles.urlInput}
+                readOnly
+                value={publicUrl}
+                onFocus={(e) => e.target.select()}
+              />
+              <button
+                id="copy-url-btn"
+                className={styles.copyBtn}
+                onClick={() => navigator.clipboard.writeText(publicUrl)}
+              >
+                Copy
+              </button>
+            </div>
+            <a
+              id="open-public-url"
+              href={publicUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.openLink}
+            >
+              Open public page →
+            </a>
+          </div>
+        ) : (
+          <>
+            <button
+              id="publish-invitation-btn"
+              className={styles.publishBtn}
+              disabled={publishMutation.isPending}
+              onClick={() => publishMutation.mutate()}
+            >
+              {publishMutation.isPending ? 'Publishing…' : 'Publish Invitation →'}
+            </button>
+            {publishMutation.isError && (
+              <p className={styles.publishError} role="alert">Failed to publish. Please try again.</p>
+            )}
+            <p className={styles.publishHint}>Publishing will make your invitation available via a public link.</p>
+          </>
+        )}
       </div>
     </div>
   );

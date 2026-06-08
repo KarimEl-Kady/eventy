@@ -42,3 +42,11 @@ export async function fetchInvitation(id: string): Promise<Invitation> {
   if (!res.ok) throw new Error('Invitation not found');
   return res.json();
 }
+
+export async function publishInvitation(id: string): Promise<Invitation> {
+  const res = await fetch(`${BASE_URL}/api/invitations/${id}/publish`, {
+    method: 'PATCH',
+  });
+  if (!res.ok) throw new Error('Failed to publish invitation');
+  return res.json();
+}

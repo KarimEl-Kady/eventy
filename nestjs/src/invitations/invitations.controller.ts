@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Param, Body } from '@nestjs/common';
+import { Controller, Post, Get, Patch, Param, Body } from '@nestjs/common';
 import { InvitationsService } from './invitations.service';
 import { CreateInvitationDto } from './dto/create-invitation.dto';
 
@@ -14,5 +14,10 @@ export class InvitationsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.invitationsService.findOne(id);
+  }
+
+  @Patch(':id/publish')
+  publish(@Param('id') id: string) {
+    return this.invitationsService.publish(id);
   }
 }
