@@ -1,0 +1,71 @@
+.page {
+  min-height: 100vh;
+  background: #f9f6f2;
+  padding: 40px 24px 64px;
+  font-family: 'Inter', sans-serif;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6b6b6b;
+  margin: 0;
+}
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.filterBtn {
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.filterBtn:hover {
+  border-color: #c9a84c;
+  color: #c9a84c;
+}
+
+.filterBtnActive {
+  background: #c9a84c;
+  border-color: #c9a84c;
+  color: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.status {
+  text-align: center;
+  color: #888;
+  margin-top: 48px;
+  font-size: 0.95rem;
+}
