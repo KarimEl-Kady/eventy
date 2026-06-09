@@ -1,0 +1,38 @@
+import { StyleSheet } from 'react-native';
+import { colors, spacing } from '../../theme';
+
+export const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: colors.background },
+  header: { paddingTop: 60, paddingHorizontal: spacing.lg, paddingBottom: spacing.sm },
+  logo: { fontSize: 16, fontWeight: '700', color: colors.gold, letterSpacing: 0.5, marginBottom: spacing.md },
+  title: { fontSize: 28, fontWeight: '800', color: colors.textPrimary, letterSpacing: -0.5 },
+  subtitle: { fontSize: 15, color: colors.textSecondary, marginTop: 6, lineHeight: 20 },
+  grid: { paddingHorizontal: spacing.md, paddingTop: spacing.md, paddingBottom: 120 },
+  row: { gap: spacing.md, marginBottom: spacing.md },
+  ctaBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.md,
+    paddingBottom: 34,
+    borderTopWidth: 1,
+    borderTopColor: '#F0EBE3',
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+  },
+  ctaLeft: { flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1 },
+  ctaThumb: { width: 40, height: 40, borderRadius: 8, backgroundColor: '#F0EBE3' },
+  ctaLabel: { fontSize: 11, color: colors.textMuted, fontWeight: '500' },
+  ctaName: { fontSize: 14, fontWeight: '700', color: colors.textPrimary },
+  ctaBtn: { backgroundColor: colors.gold, paddingHorizontal: 22, paddingVertical: 12, borderRadius: 12 },
+  ctaBtnText: { color: '#FFF', fontWeight: '700', fontSize: 14 },
+});
