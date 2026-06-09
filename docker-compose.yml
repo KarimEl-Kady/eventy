@@ -5,16 +5,16 @@ services:
     container_name: eventy_postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: karim
-      POSTGRES_PASSWORD: 123123123
-      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: eventy
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U karim -d mydb"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d eventy"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -23,13 +23,13 @@ services:
   api:
     build:
       context: ./nestjs
-      dockerfile: Dockerfile
+      dockerfile: ../docker/api/Dockerfile
     container_name: eventy_api
     restart: unless-stopped
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgresql://karim:123123123@postgres:5432/mydb?schema=eventy
-      PORT: 3000
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/eventy?schema=eventy
+      PORT: "3000"
     ports:
       - "3000:3000"
     volumes:
@@ -38,17 +38,15 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    command: npm run start:dev
+    command: sh -c "npx prisma migrate deploy && npx prisma db seed && npm run start:dev"
 
   # ─── React / Vite Frontend ─────────────────────────────────────────────────
   web:
     build:
       context: ./reactjs
-      dockerfile: Dockerfile
+      dockerfile: ../docker/web/Dockerfile
     container_name: eventy_web
     restart: unless-stopped
-    environment:
-      VITE_API_URL: http://localhost:3000
     ports:
       - "5173:5173"
     volumes:

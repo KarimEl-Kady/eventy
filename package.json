@@ -1,12 +1,22 @@
 {
   "name": "eventy",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "description": "Eventy - Wedding Invitation Platform",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node scripts/info.js && concurrently -n docker,mobile -c blue,green \"docker compose up --build\" \"cd mobile && npx expo start\"",
+    "back": "cd nestjs && npm run start:dev",
+    "front": "cd reactjs && npm run dev",
+    "mobile": "cd mobile && npx expo start",
+    "front:back": "concurrently -n api,web -c yellow,cyan \"npm run back\" \"npm run front\"",
+    "mobile:back": "concurrently -n api,mobile -c yellow,green \"npm run back\" \"npm run mobile\"",
+    "all": "concurrently -n api,web,mobile -c yellow,cyan,green \"npm run back\" \"npm run front\" \"npm run mobile\"",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "install:all": "cd nestjs && npm install && cd ../reactjs && npm install && cd ../mobile && npm install",
+    "info": "node scripts/info.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }
