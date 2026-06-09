@@ -1,6 +1,6 @@
 # Eventy 🎉
 
-A wedding invitation platform where hosts can create beautiful digital invitations from curated templates and guests can RSVP online — no accounts required.
+A wedding invitation platform where couples create beautiful digital invitations from curated templates and guests can RSVP online — no accounts required.
 
 ---
 
@@ -8,8 +8,9 @@ A wedding invitation platform where hosts can create beautiful digital invitatio
 
 - 📋 **Invitation Builder** — create and customise invitations from a template library
 - 🔗 **Public Invitation Pages** — shareable links guests can open without signing in
-- ✉️ **RSVP System** — guests submit attendance responses; hosts see a live summary
+- ✉️ **RSVP System** — guests submit attendance responses; couples see a live summary
 - 🗂️ **Template Explorer** — browse free and premium invitation designs
+- 📱 **Mobile App** — full-featured React Native app with Expo
 
 ---
 
@@ -17,7 +18,8 @@ A wedding invitation platform where hosts can create beautiful digital invitatio
 
 | Layer | Technology |
 |---|---|
-| Frontend | React 19, TypeScript, Vite, React Router, TanStack Query, Zustand |
+| Frontend (Web) | React 19, TypeScript, Vite, React Router, TanStack Query, Zustand |
+| Frontend (Mobile) | React Native, Expo, Expo Router, TanStack Query, Zustand, Axios |
 | Backend | NestJS 11, Prisma 7, PostgreSQL 16 |
 | API Style | REST |
 | DevOps | Docker, Docker Compose |
@@ -29,117 +31,154 @@ A wedding invitation platform where hosts can create beautiful digital invitatio
 ```
 eventy/
 ├── nestjs/          # NestJS REST API
-│   ├── prisma/      # Prisma schema & migrations
+│   ├── prisma/      # Prisma schema, migrations & seed
 │   └── src/
 │       ├── templates/    # Template browsing
-│       ├── invitations/  # Invitation CRUD
-│       └── rsvp/         # RSVP submissions & summary
-├── reactjs/         # React / Vite frontend
+│       ├── invitations/  # Invitation CRUD & publish
+│       └── rsvp/         # RSVP submissions & listing
+├── reactjs/         # React / Vite web frontend
+├── mobile/          # React Native / Expo mobile app
+│   ├── app/         # Expo Router screens
+│   │   ├── index.tsx             # Template Explorer
+│   │   ├── invitations/new.tsx   # Create Invitation
+│   │   ├── invitations/[id].tsx  # Preview, Publish & RSVP list
+│   │   └── public/[slug].tsx     # Guest view + RSVP form
+│   └── src/
+│       ├── api/          # Axios API client
+│       ├── store/        # Zustand stores
+│       ├── theme/        # Colors & styling
+│       └── types/        # Shared TypeScript types
 ├── docker/
-│   └── postgres/
-│       └── init.sql # Creates the `eventy` schema
+│   ├── api/         # API Dockerfile
+│   ├── web/         # Web Dockerfile
+│   └── postgres/    # DB init script
+├── scripts/         # Utility scripts
 ├── docker-compose.yml
-├── Makefile         # Handy shortcuts
-└── .env.example
+├── package.json     # Root scripts for running all services
+└── .env             # Default environment variables
 ```
 
 ---
 
-## Getting Started with Docker
-
-Docker is the recommended way to run the full stack locally. It spins up PostgreSQL, the NestJS API, and the Vite dev server in one command.
+## Quick Start
 
 ### Prerequisites
 
+- [Node.js](https://nodejs.org/) ≥ 22
 - [Docker](https://docs.docker.com/get-docker/) ≥ 24
-- [Docker Compose](https://docs.docker.com/compose/) v2 (included with Docker Desktop)
-- `make` (optional, for shortcut commands)
+- [Expo Go](https://expo.dev/go) app on your phone (for mobile testing)
 
 ### 1. Clone the repo
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/KarimEl-Kady/eventy.git
 cd eventy
 ```
 
-### 2. Configure environment variables
+### 2. Install root dependencies
 
 ```bash
-cp .env.example .env
-# Edit .env if you need to change credentials (defaults work out of the box)
+npm install
 ```
 
-### 3. Start all services
+### 3. Run everything
 
 ```bash
-make up
-# or without make:
-docker compose up -d --build
+npm run dev
 ```
 
-On first run, Docker builds the images (~1–2 min). Subsequent starts are instant.
+This starts:
+- **Docker** (PostgreSQL + NestJS API + React Web)
+- **Expo** (Mobile app dev server)
 
-### 4. Run database migrations
-
-```bash
-make migrate
-# or:
-docker compose exec api npx prisma migrate deploy
-```
-
-### 5. (Optional) Seed the database
-
-```bash
-make seed
-# or:
-docker compose exec api npx prisma db seed
-```
-
-### 6. Open the app
+### 4. Open the apps
 
 | Service | URL |
 |---|---|
-| React frontend | http://localhost:5173 |
+| React Web | http://localhost:5173 |
+| Mobile (browser) | http://localhost:8081 |
+| Mobile (phone) | Scan QR code in Expo terminal |
 | NestJS API | http://localhost:3000 |
-| PostgreSQL | `localhost:5432` (user: `karim`, db: `mydb`) |
+| PostgreSQL | localhost:5432 |
 
 ---
 
-## Makefile Reference
+## Available Scripts
 
-```bash
-make up          # Build images and start all services (detached)
-make down        # Stop and remove containers
-make restart     # down + up
-make logs        # Tail logs for all services
-make logs s=api  # Tail logs for a specific service (api | web | postgres)
-make migrate     # Run Prisma migrations inside the API container
-make seed        # Run the Prisma seed script
-make shell-api   # Open a shell inside the API container
-make shell-db    # Open a psql session inside the Postgres container
-```
+Run from the project root:
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start everything (Docker + Expo) |
+| `npm run back` | Backend only (NestJS) |
+| `npm run front` | Web frontend only (Vite) |
+| `npm run mobile` | Mobile app only (Expo) |
+| `npm run front:back` | Web + Backend |
+| `npm run mobile:back` | Mobile + Backend |
+| `npm run all` | All three without Docker (needs local DB) |
+| `npm run docker:up` | Docker only (DB + API + Web) |
+| `npm run docker:down` | Stop Docker containers |
+| `npm run install:all` | Install deps in all sub-projects |
+| `npm run info` | Show running service URLs |
 
 ---
 
-## Development (without Docker)
+## Docker Setup
 
-If you prefer running services locally:
+Docker handles PostgreSQL, the API, and the web frontend. Migrations and seed data run automatically on startup.
 
-**API**
 ```bash
-cd nestjs
-npm install
-# Set DATABASE_URL in nestjs/.env to point at your local Postgres
-npx prisma migrate deploy
-npm run start:dev
+# Start all containers
+docker compose up --build
+
+# Stop
+docker compose down
 ```
 
-**Frontend**
+Default credentials (no `.env` needed):
+
+| Setting | Value |
+|---|---|
+| DB User | `postgres` |
+| DB Password | `postgres` |
+| DB Name | `eventy` |
+| DB Schema | `eventy` |
+
+---
+
+## Mobile App
+
+The mobile app runs on Android and iOS via Expo Go.
+
 ```bash
-cd reactjs
+cd mobile
 npm install
-npm run dev
+npx expo start
 ```
+
+Scan the QR code with Expo Go on your phone. The app connects to the API at your machine's LAN IP (configured in `mobile/src/api/client.ts`).
+
+### Mobile Screens
+
+1. **Template Explorer** — browse templates with category filtering
+2. **Create Invitation** — form to enter wedding details
+3. **Invitation Detail** — preview, publish, share link, view RSVPs
+4. **Public Invitation** — guest view with RSVP form
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/templates` | List all templates |
+| GET | `/api/templates/:slug` | Get template by slug |
+| POST | `/api/invitations` | Create draft invitation |
+| GET | `/api/invitations/:id` | Get invitation by ID |
+| PATCH | `/api/invitations/:id/publish` | Publish invitation |
+| GET | `/api/invitations/public/:slug` | Get public invitation |
+| POST | `/api/rsvps` | Submit RSVP |
+| GET | `/api/invitations/:id/rsvps` | List RSVPs for invitation |
 
 ---
 
@@ -156,4 +195,4 @@ eventy (schema)
 
 ## Contributing
 
-This project is in active development. See `.squad/plans/` for current feature stories and implementation plans.
+This project is in active development. See `.squad/plans/` for feature stories and implementation plans.
